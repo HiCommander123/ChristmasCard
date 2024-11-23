@@ -1,0 +1,38 @@
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #00ba5d; /* 파란색 배경 */
+}
+
+nav {
+    background-color: rgba(255, 0, 0, 0.8); /* 반투명 빨간색 */
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
+
+h1 {
+    color: #ffffff; /* 흰색 텍스트 */
+}
+
+h2 {
+    color: #ffffff; /* 흰색 텍스트 */
+}
+
+div {
+    border: 2px solid #ffcc00; /* 금색 테두리 */
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: rgba(255, 255, 255, 0.9); /* 반투명 흰색 배경 */
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
