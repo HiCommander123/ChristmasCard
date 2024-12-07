@@ -2,12 +2,16 @@
 
 {% block content %}
 <h1>받은 편지 목록</h1>
-<img src="{{ url_for('static', filename='uploads/christmas_tree.png') }}" alt="크리스마스 트리" style="width:100%; max-width:500px;">
 {% for letter in letters %}
     <div>
-        <h2><a href="{{ url_for('view_letter', letter_id=letter.id) }}">{{ letter.author }}님의 편지</a></h2>
-        <p>작성일: {{ letter.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
-        <p>{{ letter.content[:50] }}...</p> <!-- 내용의 일부만 보여줌 -->
+        <h2>
+            <a href="{{ url_for('view_letter', letter_id=letter.id) }}">
+                {{ letter.author }}님의 편지
+            </a>
+        </h2>
+        <form action="{{ url_for('delete_letter', letter_id=letter.id) }}" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+        </form>
     </div>
 {% endfor %}
 {% endblock %}
