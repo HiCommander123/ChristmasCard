@@ -1,11 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ letter.author }}님의 편지</h1>
-<p>작성일: {{ letter.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
-<p>{{ letter.content }}</p>
-{% if letter.image %}
-    <img src="{{ url_for('static', filename='uploads/' + letter.image) }}" alt="첨부 이미지">
-{% endif %}
-<a href="{{ url_for('index') }}">목록으로 돌아가기</a>
+<div class="letter-view-container">
+    <div class="letter-card">
+        <div class="letter-header">
+            <h2>{{ letter.author }}님의 편지</h2>
+            <span class="letter-date">{{ letter.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+        </div>
+        
+        <div class="letter-content">
+            {{ letter.content }}
+        </div>
+        
+        {% if letter.image %}
+        <div class="letter-image">
+            <img src="{{ url_for('static', filename='uploads/' + letter.image) }}" alt="첨부 이미지">
+        </div>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}

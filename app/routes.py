@@ -6,7 +6,14 @@ import os
 
 @app.route('/')
 def index():
-    letters = Letter.query.order_by(Letter.created_at.desc()).all()
+    query = request.args.get('query')
+    if query:
+        letters = Letter.query.filter(
+            (Letter.author.ilike(f'%{query}%')) | 
+            (Letter.content.ilike(f'%{query}%'))
+        ).all()
+    else:
+        letters = Letter.query.all()
     return render_template('index.html', letters=letters)
 
 @app.route('/write', methods=['GET', 'POST'])
