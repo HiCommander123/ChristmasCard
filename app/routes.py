@@ -1,4 +1,5 @@
 from flask import render_template, request, redirect, url_for
+from flask import flash, redirect, url_for, render_template, request
 from app import app, db
 from app.models import Letter
 from werkzeug.utils import secure_filename
@@ -56,3 +57,16 @@ def delete_letter(letter_id):
     db.session.commit()
     
     return redirect(url_for('index'))
+
+from flask import redirect, url_for, request
+
+@app.route('/edit_letter/<int:letter_id>', methods=['GET', 'POST'])
+def edit_letter(letter_id):
+    letter = Letter.query.get_or_404(letter_id)
+    if request.method == 'POST':
+        letter.author = request.form['author']
+        letter.content = request.form['content']
+        db.session.commit()
+        flash('편지가 성공적으로 수정되었습니다.', 'success')
+        return redirect(url_for('view_letter', letter_id=letter.id))
+    return render_template('edit_letter.html', letter=letter)
