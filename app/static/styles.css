@@ -10,6 +10,20 @@ nav {
     text-align: center;
 }
 
+.snowflake {
+    position: absolute;
+    color: #fff; /* 눈송이 색상 */
+    user-select: none;
+    pointer-events: none;
+    animation: fall linear forwards; /* 떨어지는 애니메이션 추가 */
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh); /* 화면 아래로 떨어지도록 설정 */
+    }
+}
+
 nav a {
     color: white;
     margin: 0 15px;
@@ -30,11 +44,6 @@ div {
     padding: 15px;
     margin: 10px 0;
     background-color: rgba(255, 255, 255, 0.9); /* 반투명 흰색 배경 */
-}
-
-img {
-    max-width: 100%;
-    height: auto;
 }
 .letter-view-container {
     display: flex;
@@ -149,4 +158,15 @@ img {
 .btn-secondary {
     background-color: #6c757d;
     color: white;
+}
+
+body {
+    background-image: url('/static/images/winter_background.jpg');
+    background-size: cover;
+    position: relative;
+    overflow: hidden; /* 스크롤바가 나타나지 않도록 설정 */
+}
+img {
+    max-width: 100%;
+    height: auto;
 }
