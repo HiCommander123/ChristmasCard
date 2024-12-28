@@ -2,32 +2,6 @@
 
 {% block content %}
 
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사용자 IP 표시</title>
-    <style>
-        #ip-display {
-            position: fixed;
-            bottom: 10px;
-            left: 10px;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-    <!-- 웹사이트 내용 -->
-    <div id="ip-display">IP: {{ user_ip }}</div>
-</body>
-</html>
-
-
 <audio id="backgroundMusic" loop>
     <source src="{{ url_for('static', filename='music/background_music.mp3') }}" type="audio/mpeg">
     Your browser does not support the audio element.
@@ -99,5 +73,30 @@
             <button type="submit" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
         </form>
     </div>
+    <!DOCTYPE html>
+    <html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>사용자 IP 표시</title>
+        <style>
+            #ip-display {
+                position: fixed;
+                bottom: 10px;
+                left: 10px;
+                background-color: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 5px 10px;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 웹사이트 내용 -->
+        <div id="ip-display">IP: {{ user_ip }}</div>
+    </body>
+    </html>
+    
 {% endfor %}
 {% endblock %}
