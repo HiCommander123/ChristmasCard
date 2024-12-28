@@ -2,11 +2,87 @@
 
 {% block content %}
 
+
 <audio id="backgroundMusic" loop>
     <source src="{{ url_for('static', filename='music/background_music.mp3') }}" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
 <button id="musicToggle">배경음악 켜기/끄기</button>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜덤 인사말 생성기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #greeting {
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .generate-button, .share-button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px; /* 버튼 간격 */
+        }
+        .generate-button:hover, .share-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="greeting">여기에 인사말이 표시됩니다.</div>
+    <button class="generate-button" onclick="generateGreeting()">랜덤 인사말 생성</button>
+    <button class="share-button" onclick="shareGreeting()">인사말 공유하기</button>
+
+    <script>
+        const greetings = [
+            "메리 크리스마스!",
+            "행복한 연말 보내세요!",
+            "즐거운 크리스마스 되세요!",
+            "가족과 함께 행복한 시간 되세요!",
+            "올 한 해 수고하셨습니다!",
+            "새해 복 많이 받으세요!",
+            "크리스마스의 기적이 당신에게 가득하길 바랍니다!"
+        ];
+
+        function generateGreeting() {
+            const randomIndex = Math.floor(Math.random() * greetings.length);
+            const greetingMessage = greetings[randomIndex];
+            document.getElementById('greeting').innerText = greetingMessage;
+        }
+
+        function shareGreeting() {
+            const greetingMessage = document.getElementById('greeting').innerText;
+            const url = window.location.href; // 현재 페이지 URL
+            const shareText = `${greetingMessage} - ${url}`; // 공유할 텍스트
+
+            // 소셜 미디어 공유 URL
+            const twitterShareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}`;
+            const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+
+            // 사용자가 선택할 수 있는 옵션
+            if (confirm("어떤 플랫폼에 공유하시겠습니까?\n\n1. Twitter\n2. Facebook\n\n확인 클릭 시 Twitter로 공유됩니다.")) {
+                window.open(twitterShareUrl, '_blank');
+            } else {
+                window.open(facebookShareUrl, '_blank');
+            }
+        }
+    </script>
+
+</body>
+</html>
 
 
 
