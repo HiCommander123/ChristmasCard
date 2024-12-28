@@ -12,7 +12,7 @@ function updateCountdown() {
     const currentYear = now.getFullYear();
     
     // 크리스마스 날짜 설정 (12월 25일)
-    const christmasDate = new Date(currentYear, 11, 25); // 월은 0부터 시작하므로 11은 12월을 의미
+    const christmasDate = new Date(currentYear, 11, 25);
 
     // 현재 날짜가 크리스마스를 지나면 내년 크리스마스를 설정
     if (now > christmasDate) {
@@ -21,9 +21,14 @@ function updateCountdown() {
 
     // 남은 시간 계산
     const timeDiff = christmasDate - now;
-    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24)); // 밀리초를 일로 변환
+    const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-    countdownElement.textContent = `크리스마스까지 ${daysLeft}일 남았습니다!`;
+    // 크리스마스 당일 체크
+    if (now.getMonth() === 11 && now.getDate() === 25) {
+        countdownElement.textContent = "오늘은 크리스마스입니다! 🎄🎅";
+    } else {
+        countdownElement.textContent = `크리스마스까지 ${daysLeft}일 남았습니다!`;
+    }
 }
 
 // 초기 카운트다운 업데이트
@@ -31,9 +36,6 @@ updateCountdown();
 
 // 하루마다 업데이트 (86400000 밀리초)
 setInterval(updateCountdown, 1000 * 60 * 60 * 24);
-
-
-  
 
 function createSnowflake() {
     const snowflake = document.createElement('div');

@@ -70,3 +70,12 @@ def edit_letter(letter_id):
         flash('편지가 성공적으로 수정되었습니다.', 'success')
         return redirect(url_for('view_letter', letter_id=letter.id))
     return render_template('edit_letter.html', letter=letter)
+
+from flask import Flask, request, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    user_ip = request.remote_addr
+    return render_template('index.html', user_ip=user_ip)
